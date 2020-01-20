@@ -11,30 +11,23 @@ function App() {
 	const [products] = useState(data);
 	const [cart, setCart] = useState([]);
 
-	const addItem = item => {
+	const addItem = product => {
 		// add the given item to the cart
+		setCart([...cart, product]);
 	};
 
 	return (
-		<div className="App">
+		<div className='App'>
 			<Navigation cart={cart} />
 
 			{/* Routes */}
 			<Route
 				exact
-				path="/"
-				render={() => (
-					<Products
-						products={products}
-						addItem={addItem}
-					/>
-				)}
+				path='/'
+				render={() => <Products products={products} addItem={addItem} />}
 			/>
 
-			<Route
-				path="/cart"
-				render={() => <ShoppingCart cart={cart} />}
-			/>
+			<Route path='/cart' render={() => <ShoppingCart cart={cart} />} />
 		</div>
 	);
 }
